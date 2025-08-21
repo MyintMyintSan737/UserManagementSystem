@@ -8,8 +8,6 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
-
-
 namespace UserManagementSystem.Controllers
 {
     public class UserController : Controller
@@ -60,16 +58,6 @@ namespace UserManagementSystem.Controllers
             return RedirectToAction("Login");
         }
 
-        //public IActionResult Signup()
-        //{
-        //    var model = new SignupViewModel
-        //    {
-        //        NewUser = new Users(),
-        //        UserList = _context.Users.OrderByDescending(u => u.Id).Take(10).ToList()
-        //    };
-        //    return View(model);
-        //}
-
         [HttpGet]
         public IActionResult Signup()
         {
@@ -90,72 +78,6 @@ namespace UserManagementSystem.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Signup(SignupViewModel model)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            model.UserList = _context.Users.OrderByDescending(u => u.Id).Take(10).ToList();
-        //            return View(model);
-        //        }
-
-        //        if (model.NewUser.Id > 0)
-        //        {
-        //            var existingUser = await _context.Users.FindAsync(model.NewUser.Id);
-        //            if (existingUser == null) return NotFound();
-
-        //            existingUser.UserName = model.NewUser.UserName;
-        //            existingUser.Password = model.NewUser.Password;
-        //            existingUser.ConfirmPassword = model.NewUser.ConfirmPassword;
-        //            existingUser.Email = model.NewUser.Email;
-        //            existingUser.ContactNo = model.NewUser.ContactNo;
-        //            existingUser.NRCNo = model.NewUser.NRCNo;
-
-        //            await _context.SaveChangesAsync();
-        //            ModelState.Clear();
-        //            TempData["PopupMessage"] = "User successfully updated!";
-        //        }
-        //        else
-        //        {
-        //            bool userExists = _context.Users.Any(u => u.UserName == model.NewUser.UserName);
-        //            if (userExists)
-        //            {
-        //                TempData["PopupMessage"] = "Username already exists.";
-        //                model.UserList = _context.Users.OrderByDescending(u => u.Id).Take(10).ToList();
-        //            }
-
-        //            bool emailExists = _context.Users.Any(u => u.Email == model.NewUser.Email);
-        //            if (emailExists)
-        //            {
-        //                TempData["PopupMessage"] = "Email already registered.";
-        //                model.UserList = _context.Users.OrderByDescending(u => u.Id).Take(10).ToList();
-        //                return RedirectToAction("Signup");
-        //            }
-
-        //            _context.Users.Add(model.NewUser);
-        //            await _context.SaveChangesAsync();
-        //            ModelState.Clear();
-        //            TempData["PopupMessage"] = "User successfully registered!";
-        //        }
-
-        //        var newModel = new SignupViewModel
-        //        {
-        //            NewUser = new Users(),
-        //            UserList = _context.Users.OrderByDescending(u => u.Id).Take(10).ToList()
-        //        };
-
-        //        return RedirectToAction("Signup");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["PopupMessage"] = "An error occurred: " + ex.Message;
-        //        model.UserList = _context.Users.OrderByDescending(u => u.Id).Take(10).ToList();
-        //        return RedirectToAction("Signup");
-        //    }
-        //}
-
         [HttpPost]
         public async Task<IActionResult> Signup(SignupViewModel model)
         {
@@ -167,7 +89,6 @@ namespace UserManagementSystem.Controllers
                     return View(model);
                 }
 
-                // For Update
                 if (model.NewUser.Id > 0)
                 {
                     var existingUser = await _context.Users.FindAsync(model.NewUser.Id);

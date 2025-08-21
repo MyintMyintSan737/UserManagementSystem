@@ -115,19 +115,6 @@
     </table>
 </div>
 
-@*@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-    <script>
-        var hasMessage = '@TempData["PopupMessage"]'.trim();
-        if (hasMessage !== '') {
-            var myModal = new bootstrap.Modal(document.getElementById('popupModal'));
-            myModal.show();
-        }
-
-    </script>
-}
-*@
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
@@ -136,13 +123,12 @@
             var myModal = new bootstrap.Modal(document.getElementById('popupModal'));
             myModal.show();
 
-            // Auto-scroll to first table row
             const firstRow = document.getElementById("userRow_0");
             if (firstRow) {
                 firstRow.scrollIntoView({ behavior: "smooth", block: "center" });
-                firstRow.style.backgroundColor = "#e0f7fa"; // highlight effect
+                firstRow.style.backgroundColor = "#e0f7fa"; 
                 setTimeout(() => {
-                    firstRow.style.backgroundColor = ""; // remove highlight after 2s
+                    firstRow.style.backgroundColor = ""; 
                 }, 2000);
             }
         }
