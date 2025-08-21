@@ -1,0 +1,49 @@
+﻿@model UserManagementSystem.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container mt-5" style="max-width: 450px; border: 1px solid black; padding: 20px; position: relative;">
+    <div style="position: absolute; top: -20px; left: 10px; background: white; padding: 0 10px;">
+        <strong>Log In</strong>
+    </div>
+
+    <form asp-action="Login" method="post">
+        <div class="mb-3">
+            <label asp-for="UserName" class="form-label">User Name:</label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password:</label>
+            <input asp-for="Password" class="form-control" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <a asp-action="ResetPassword">Forget Password?</a><br />
+                <small>New User? <a asp-action="Signup">Sign Up</a></small>
+            </div>
+            <button type="submit" class="btn btn-light border-1" style="min-width: 120px; height: 50px; border-radius: 15px;">Sign In</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        var hasMessage = '@TempData["PopupMessage"]'.trim();
+        if (hasMessage !== '') {
+            var myModal = new bootstrap.Modal(document.getElementById('popupModal'));
+            myModal.show();
+        }
+
+    </script>
+}
+
